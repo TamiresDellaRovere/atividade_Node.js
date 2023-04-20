@@ -14,6 +14,9 @@ const Aluno = connection.define("aluno", {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+        validate: {
+            isEmail: true,
+        }
     },
     matricula: {
         type: DataTypes.STRING,
