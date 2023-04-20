@@ -77,7 +77,7 @@ router.delete("/professores/:id", async (req,res) => {
             await deletarProfessor.destroy();
             res.status(200).json({ message: "Professor excluido com sucesso." })
         }else{
-            res.status(404).json({ message: "Professor não encontrada." })
+            res.status(404).json({ message: "Professor não encontrado." })
         }
     }catch{
         console.log(err);

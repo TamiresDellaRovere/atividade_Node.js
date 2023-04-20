@@ -1,0 +1,515 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de gerênciamento acadêmico escolar.",
+        "description": "É composto por três CRUD'S simples, onde podemos fazer alterações dos alunos, professores e turmas.",
+        "contact": {
+            "email": "tami.della.rovere@gmail.com"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000"
+        }
+    ],
+    "paths": {
+        "/professores": {
+            "post": {
+                "summary": "Cadastro de professores",
+                "description": "Essa rota será responsável por cadastrar um novo professor.",
+                "tags": [
+                    "Professores"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Professores"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Professor adicionado."
+                    },
+                    "404": {
+                        "description": "Professor não encontrado."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listagem de professores",
+                "description": "Essa rota será responsável por listar todos professores",
+                "tags": [
+                    "Professores"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Professores encontrados."
+                    },
+                    "404": {
+                        "description": "Professores não encontrados."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu"
+                    }
+                }
+            }
+        },
+        "/professores/{nomeProfessor}": {
+            "get": {
+                "description": "Essa rota será responsável por listar o nome dos professores.",
+                "summary": "Listagem de professores por nome",
+                "tags": [
+                    "Professores"
+                ],
+                "parameters": [
+                    {
+                        "name": "nomeProfessor",
+                        "in": "path",
+                        "description": "Nome do professor a ser procurado.",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Professor encontrado."
+                    },
+                    "404": {
+                        "description": "Professor não encontrado."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu"
+                    }
+                }
+            }
+        },
+        "/professores/{id}": {
+            "put": {
+                "summary": "Atualizar professor",
+                "description": "Essa rota será responsável por atualizar um professor existente.",
+                "tags": [
+                    "Professores"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Digite na rota o :id do professor a ser atualizado.",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Professores"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Professor atualizado com sucesso."
+                    },
+                    "404": {
+                        "description": "Professor não encontrado."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar professor",
+                "description": "Essa rota será responsável por deletar um professor existente.",
+                "tags": [
+                    "Professores"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Digite na rota o :id do professor a ser deletado.",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Professor deletado com sucesso."
+                    },
+                    "404": {
+                        "description": "Professor não encontrado."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu."
+                    }
+                }
+            }
+        },
+        "/turmas": {
+            "post": {
+                "summary": "Cadastro de turma",
+                "description": "Essa rota será responsável por cadastrar uma nova turma.",
+                "tags": [
+                    "Turma"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Turma"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Turma adicionada."
+                    },
+                    "404": {
+                        "description": "Turma não encontrada."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listagem de turmas",
+                "description": "Essa rota será responsável por listar todas turmas",
+                "tags": [
+                    "Turma"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Turmas encontradas."
+                    },
+                    "404": {
+                        "description": "Turmas não encontradas."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu"
+                    }
+                }
+            }
+        },
+        "/turmas/{ano}": {
+            "get": {
+                "description": "Essa rota será responsável por listar turmas por ano.",
+                "summary": "Listagem de turmas por ano",
+                "tags": [
+                    "Turma"
+                ],
+                "parameters": [
+                    {
+                        "name": "ano",
+                        "in": "path",
+                        "description": "Ano da turma a ser procurada.",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Turma encontrada."
+                    },
+                    "404": {
+                        "description": "Turma não encontrada."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu"
+                    }
+                }
+            }
+        },
+        "/turmas/{id}": {
+            "put": {
+                "summary": "Atualizar turma",
+                "description": "Essa rota será responsável por atualizar uma turma existente.",
+                "tags": [
+                    "Turma"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da turma a ser atualizada",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Turma"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Turma atualizada com sucesso."
+                    },
+                    "404": {
+                        "description": "Turma não encontrada."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar turma",
+                "description": "Essa rota será responsável por deletar uma turma existente.",
+                "tags": [
+                    "Turma"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da turma a ser deletada",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Turma deletada com sucesso."
+                    },
+                    "404": {
+                        "description": "Turma não encontrada."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu."
+                    }
+                }
+            }
+        },
+        "/alunos": {
+            "post": {
+                "summary": "Cadastro de alunos",
+                "description": "Essa rota será responsável por cadastrar um novo aluno.",
+                "tags": [
+                    "Alunos"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Alunos"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Aluno adicionado."
+                    },
+                    "404": {
+                        "description": "Turma não encontrada."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Listagem de alunos",
+                "description": "Essa rota será responsável por listar todos alunos.",
+                "tags": [
+                    "Alunos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Alunos encontrados."
+                    },
+                    "404": {
+                        "description": "Alunos não encontrados."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu"
+                    }
+                }
+            }
+        },
+        "/alunos/{nome}": {
+            "get": {
+                "description": "Essa rota será responsável por listar o aluno por nome.",
+                "summary": "Listagem de alunos por nome",
+                "tags": [
+                    "Alunos"
+                ],
+                "parameters": [
+                    {
+                        "name": "nome",
+                        "in": "path",
+                        "description": "Nome do aluno a ser procurado.",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Aluno encontrado."
+                    },
+                    "404": {
+                        "description": "Aluno não encontrado."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu"
+                    }
+                }
+            }
+        },
+        "/alunos/{id}": {
+            "put": {
+                "summary": "Atualizar aluno",
+                "description": "Essa rota será responsável por atualizar um aluno existente, através do seu id.",
+                "tags": [
+                    "Alunos"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Digite o :id do aluno a ser atualizado.",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Alunos"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Aluno atualizado com sucesso."
+                    },
+                    "404": {
+                        "description": "Aluno não encontrado."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar aluno",
+                "description": "Essa rota será responsável por deletar um aluno existente, através do seu id.",
+                "tags": [
+                    "Alunos"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Matricula do aluno a ser deletado.",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Aluno deletado com sucesso."
+                    },
+                    "404": {
+                        "description": "Aluno não encontrado."
+                    },
+                    "500": {
+                        "description": "Um erro aconteceu."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Professores": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "example": "Mario Henrique"
+                    },
+                    "telefone": {
+                        "type": "string",
+                        "example": "(99) 9-9999-9999"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "professor@email.com"
+                    }
+                }
+            },
+            "Turma": {
+                "type": "object",
+                "properties": {
+                    "ensino": {
+                        "type": "string",
+                        "example": "Ensino fundamental"
+                    },
+                    "periodo": {
+                        "type": "string",
+                        "example": "Matutino"
+                    },
+                    "serie": {
+                        "type": "string",
+                        "example": "3ª"
+                    },
+                    "turma": {
+                        "type": "string",
+                        "example": "A"
+                    },
+                    "ano": {
+                        "type": "string",
+                        "example": "2020"
+                    },
+                    "sala_aula": {
+                        "type": "string",
+                        "example": "25"
+                    },
+                    "professorId": {
+                        "type": "string",
+                        "example": "1"
+                    }
+                }
+            },
+            "Alunos": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "example": "João Pedro"
+                    },
+                    "telefone": {
+                        "type": "string",
+                        "example": "(99)9-9999-9999"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "jp@mail.com"
+                    },
+                    "matricula": {
+                        "type": "string",
+                        "example": "258"
+                    },
+                    "data_ingressao": {
+                        "type": "string",
+                        "example": "2018-01-01"
+                    },
+                    "turmaId": {
+                        "type": "string",
+                        "example": "1"
+                    }
+                }
+            }
+        }
+    }
+}

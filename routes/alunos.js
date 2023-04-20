@@ -51,7 +51,7 @@ router.post("/alunos", async (req, res) => {
                 };
                 res.status(201).json(resposta);
         } else {
-            res.status(404).json({ message: "Turma não encontrado." });
+            res.status(404).json({ message: "Turma não encontrada." });
         }        
     }
     catch (err) {
@@ -85,7 +85,7 @@ router.delete("/alunos/:id", async (req,res) => {
             await deletarAluno.destroy();
             res.status(200).json({ message: "Aluno excluido com sucesso." })
         }else{
-            res.status(404).json({ message: "Aluno não encontrada." })
+            res.status(404).json({ message: "Aluno não encontrado." })
         }
     }catch{
         console.log(err);

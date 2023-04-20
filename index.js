@@ -1,6 +1,8 @@
 //Importações principais e variáveis de ambiente;
 require("dotenv").config();
 const express = require("express");
+const swaggerUi = require("swagger-ui-express")
+const swaggerDocs = require("./swagger.json")
 
 //Configuração do App;
 const app = express()
@@ -19,9 +21,7 @@ app.use(rotasAlunos);
 app.use(rotasProfessores);
 
 
-
-
-
+app.use("/documentation", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 
 

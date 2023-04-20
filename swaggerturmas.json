@@ -1,0 +1,130 @@
+"paths" : {
+    "/professores":{
+        "post": {
+            "summary": "Cadastrar professor",
+            "description": "Essa rota será responsável por cadastrar uma novo professor.",
+            "tags": ["Professor"],
+            "requestBody":{
+                "content": {
+                    "json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Professor"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description":"Criado com sucesso."
+                },
+                "500": {
+                    "description": "Um erro aconteceu"
+                }
+            }
+        },
+        "get": {
+            "summary": "Listagem de professores",
+            "description": "Essa rota será responsável por listar todas professores",
+            "tags": ["Professor"]
+        }
+
+    },
+    "/professores/:nome":{
+        "get": {
+            "description": "Essa rota será responsável por listar professor por nome.",
+            "summary": "Listagem de professor por nome",
+            "tags": ["Professor"],
+            "parameters": [
+                {
+                    "name": "Nome",
+                    "in": "path",
+                    "description": "Nome do professor ao ser procurado.",
+                    "required": true
+                }
+            ],
+            "responses": {
+                "201": {
+                    "description":"Professor encontrado"
+                },
+                "404": {
+                    "description":"Professor não encontrado."
+                },
+                "500": {
+                    "description": "Um erro aconteceu"
+                }
+            }
+        }
+    },
+    "/professores/:id": {
+        "put":{
+            "summary": "Atualizar professor",
+            "description": "Essa rota será responsável por atualizar uma professor existente.",
+            "tags": ["Professor"],
+            "parameters":[
+                {
+                    "name": ":id",
+                    "in": "path",
+                    "description": "Digitar na rota o :id do professor a ser atualizado.",
+                    "required": true
+                }
+            ],
+            "requestBody":{
+                "content": {
+                    "json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Professor"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": { 
+                    "description": "Professor atualizado com sucesso."
+                },
+                "404": {
+                    "description":"Professor não encontrado."
+                },
+                "500": {
+                    "description": "Um erro aconteceu."
+                }
+            }
+        },
+        "delete":{
+            "summary": "Deletar professor",
+            "description": "Essa rota será responsável por deletar um professor existente.",
+            "tags": ["Professor"],
+            "parameters":[
+                {
+                    "name": ":id",
+                    "in": "path",
+                    "description": "Digitar na rota o :id do professor a ser deletado.",
+                    "required": true
+                }
+            ],
+            "responses": {
+                "201": { 
+                    "description": "Professor deletado com sucesso."
+                },
+                "404": {
+                    "description":"Professor não encontrado."
+                },
+                "500": {
+                    "description": "Um erro aconteceu."
+                }
+            }
+        }
+    }
+},
+"components": {
+    "schemas": {
+        "Turma":{
+            "type": "object",
+            "properties": {
+                "nome": { "type": "string",  "example": "Mario Henrique" },
+                "telefone": { "type": "string", "example": "(99)9-9999-9999" },
+                "email": { "type": "string", "example": "mh@mail.com" },
+            }
+        }
+    }
+}
+}

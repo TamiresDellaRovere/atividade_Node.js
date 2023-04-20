@@ -17,9 +17,8 @@ router.get("/turmas", async (req, res) => {
 router.get("/turmas/:ano", async (req, res) => {
     const turmas = await Turma.findAll({
         where: { ano: req.params.ano },
-        include: [Aluno]
     })
-    if(turmas){
+    if(turmas.length > 0 && turmas.length < 5){
         res.status(201).json(turmas);
     } else {
         res.status(404).json({ message: "Turma não encontrada."});
